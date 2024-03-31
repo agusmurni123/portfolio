@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orderan</title>
+</head>
+<body>
+    <a href="{% url 'program:tambahpesan' %}">Tambah</a>
+    {% for program in object_list %}
+    <ul>
+        <li>{{program.nama}}</li>
+        <li>{{program.nomor}}</li>
+        <li>{{program.komentar}}</li>
+    </ul>
+    {% endfor %}
+</body>
+</html>

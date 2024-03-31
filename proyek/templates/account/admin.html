@@ -1,0 +1,51 @@
+{% extends 'account/base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <title>Admin</title>
+</head>
+<body class="p-1">
+    <h1>Hai {{user.username}}</h1>
+    <a href="{% url 'program:tambah' %}">Tambah</a>
+    <a href="indexpesan">Orderan</a>
+    {% for program in object_list %}
+    <ul class="flex font-bold text-white w-full sm:w-1/2 flex-col  sm:flex-row bg-blue-500 p-1 sm:p-2 rounded">
+        <img class="w-full sm:w-2/5 h-1/5 sm:h-full" src="{{program.gambar.url}}" alt="">
+        <ul class="text-sm leading-7 sm:leading-5 p-2 sm:p-1">
+            <li class="flex justify-between">
+                <h4>Nama Project :</h4>
+                <p>{{program.judul}}</p>
+            </li>
+            <li class="flex justify-between">
+                <h4>Bahasa Pemrograman :</h4>
+                <p>{{program.bahasa}}</p>
+            </li>
+            <li class="flex justify-between">
+                <h4>Framework dan markup :</h4>
+                <p>{{program.framework}}</p>
+            </li>
+            <li class="flex justify-between">
+                <h4>Demo github :</h4>
+                <p>{{program.github}}</p>
+            </li>
+            <li class="flex justify-between">
+                <h4>Demo Project :</h4>
+                <a href="{{program.demo}}">{{program.demo}}</a>
+            </li>
+            <ul class="flex justify-between mt-3">
+                <li class="bg-red-600 rounded p-1 text-white hover:bg-red-200 hover:text-red-500"><a href="{% url 'program:detail' program.id %}">Detail</a></li>
+                <li class="bg-red-600 rounded p-1 text-white hover:bg-red-200 hover:text-red-500"><a href="{% url 'program:ubah' program.id %}">Ubah</a></li>
+                <li class="bg-red-600 rounded p-1 text-white hover:bg-red-200 hover:text-red-500"><a href="{% url 'program:hapus' program.id %}">Hapus</a></li>
+            </ul>
+        </ul>
+    </ul>
+    {% endfor %}
+</body>
+</html>
+{% endblock %}

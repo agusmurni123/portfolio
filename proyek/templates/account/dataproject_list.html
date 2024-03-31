@@ -1,0 +1,82 @@
+{% extends 'account/base.html' %}
+{% load static %}
+
+{% block title %} cek {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <title>Daftar Project</title>
+    <style>
+        img{
+            width: 100px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body class="p-2 bg-blue-100">
+
+    <div class="nav flex justify-between bg-blue-300 mb-3 p-2 rounded">
+        <div class="judul text-red-700 font-bold">
+            <h3>Agus Rifai</h3>
+        </div>
+        <ul class="flex justify-between text-white font-bold">
+            <li class="mr-3 hover:underline"><a href="">About</a></li>
+            <li class="hover:underline"><a href="">Kontak</a></li>
+        </ul>
+    </div>
+
+    <div class="hero rounded w-full flex flex-col sm:flex-row justify-center items-center bg-blue-400 mb-3 p-2">
+        <img class="w-full sm:w-1/5" src="{% static 'img/png2.png' %}" alt="">
+        <div class="kenalan text-center sm:text-left w-full sm:w-1/2 text-white font-bold">
+            <h2>Moh agus Rifai</h2>
+            <h3>
+                Hai, Saya adalah seorang Backend Developer, 
+                Backend developer adalah seorang yang bertugas menangani web aplikasi di sisi server
+                selain itu dia juga bertugas mengelola database di web aplikasi yang dinamis dan kompleks, 
+                sehingga seorang beckend deveoper otomatis mampu membuat aplikasi/web dinamis atau yang bisa disebut CMS (Content Management System).
+            </h3>
+        </div>
+    </div>
+
+    <div class="konten bg-blue-300 rounded p-2">
+        <h2 class="text-center text-red-500 font-bold mb-3">Yuk! Lihat karya karya saya, siapa tau butuh kan. kalo memang butuh, klik pesan aja di salah satu opsi di bawah</h2>
+        {% for program in object_list %}
+        <ul class="flex font-bold text-white w-full sm:w-1/2 flex-col  sm:flex-row bg-blue-500 p-1 sm:p-2 rounded">
+            <img class="w-full sm:w-2/5 h-1/5 sm:h-full" src="{{program.gambar.url}}" alt="">
+            <ul class="text-sm leading-7 sm:leading-5 p-2 sm:p-1">
+                <li class="flex justify-between">
+                    <h4>Nama Project :</h4>
+                    <p>{{program.judul}}</p>
+                </li>
+                <li class="flex justify-between">
+                    <h4>Bahasa Pemrograman :</h4>
+                    <p>{{program.bahasa}}</p>
+                </li>
+                <li class="flex justify-between">
+                    <h4>Framework dan markup :</h4>
+                    <p>{{program.framework}}</p>
+                </li>
+                <li class="flex justify-between">
+                    <h4>Demo github :</h4>
+                    <a href="{{program.github}}">{{program.github}}</a >
+                </li>
+                <li class="flex justify-between">
+                    <h4>Demo Project :</h4>
+                    <a href="{{program.demo}}">{{program.demo}}</a>
+                </li>
+                <ul class="flex justify-start mt-3">
+                    <li class="bg-red-600 rounded p-1 text-white hover:bg-red-200 hover:text-red-500 mr-3"><a href="{% url 'program:detail' program.id %}">Detail</a></li>
+                    <li class="bg-red-600 rounded p-1 text-white hover:bg-red-200 hover:text-red-500"><a href="{% url 'program:tambahpesan' %}">Pesan</a></li>
+                </ul>
+            </ul>
+        </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <title>form order</title>
+</head>
+<body>
+    <a class="bg-blue-400 w-full p-2 text-white" href="/">Kembali</a>
+    <form class="bg-blue-400 h-screen flex flex-col justify-center items-center" action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input type="submit" value="Kirim">
+    </form>
+</body>
+</html>
